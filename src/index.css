@@ -166,6 +166,7 @@ html, body, #root {
 .step-text strong { color: var(--white); }
 
 /* ── TABLE ───────────────────────────────────────────────────── */
+.bio-table-container { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .bio-table { width: 100%; border-collapse: collapse; font-size: clamp(0.68rem, 1.1vw, 0.8rem); }
 .bio-table th {
   background: var(--amber); color: var(--navy);
@@ -285,6 +286,37 @@ html, body, #root {
   /* Hide right-column image when layout stacks — saves vertical space */
   .two-col-wide > *:last-child { display: none; }
 }
+
+/* ── MOBILE — allow slide page to scroll ────────────────────── */
+@media (max-width: 768px) {
+  /* Let the full slide content scroll vertically instead of clipping */
+  .slide-page {
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  /* Two-col: no longer flex-fills — let content be natural height */
+  .two-col {
+    flex: 0 0 auto;
+    overflow: visible;
+    min-height: unset;
+  }
+  /* Inner columns: let overflow flow out to slide-page scroller */
+  .two-col > div {
+    overflow-y: visible !important;
+    min-height: unset !important;
+    flex: none !important;
+  }
+  /* Scroll-area containers: let content flow naturally on mobile */
+  .scroll-area {
+    overflow-y: visible;
+    flex: 0 0 auto;
+    min-height: unset;
+  }
+  /* Grids: no forced min-height */
+  .grid-3, .grid-2 { min-height: unset; }
+}
+
 @media (max-width: 600px) {
   :root { --slide-pad: 1rem; }
   .grid-3, .grid-2 { grid-template-columns: 1fr; }
@@ -295,6 +327,35 @@ html, body, #root {
   /* Reduce chapter label spacing */
   .chapter-label { margin-bottom: 0.2rem; }
   .slide-divider { margin-bottom: 0.7rem; }
+  /* Bio-table: enforce a minimum width so the container scrolls horizontally */
+  .bio-table { min-width: 480px; }
+  /* Reduce card padding */
+  .card-body { padding: 0.7rem 0.85rem; }
+  /* Reduce stat-number size */
+  .stat-number { font-size: clamp(1.5rem, 5vw, 2.4rem); }
+  /* Landing page badge: allow text to wrap on narrow phones */
+  .landing-badge {
+    border-radius: 1rem;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    max-width: 90vw;
+  }
+}
+
+/* ── VERY NARROW — icon-only nav, hide 18 dots ──────────────── */
+@media (max-width: 480px) {
+  /* Hide all 18 nav dots, show compact page counter instead */
+  .nav-dots-area { display: none !important; }
+  .nav-counter   { display: flex !important; }
+  /* Show only arrow icons on Prev/Next buttons */
+  .nav-btn-label { display: none !important; }
+  /* Compact button size */
+  .nav-btn {
+    min-width: 44px !important;
+    padding: 0.5rem 0.65rem !important;
+    justify-content: center !important;
+  }
 }
 
 /* ── COMPACT LAYOUT FOR SHORT SCREENS (laptops 768px–860px tall) ──── */

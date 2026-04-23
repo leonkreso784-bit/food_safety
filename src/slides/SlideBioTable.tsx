@@ -95,7 +95,7 @@ export default function SlideBioTable({ onNext: _n }: Props) {
       <h2 className="slide-title">Biological Hazards — Reference Table</h2>
       <div className="slide-divider" />
 
-      <div style={{ flex: 1, overflow: 'auto', minHeight: 0 }}>
+      <div className="bio-table-container" style={{ flex: 1, overflow: 'auto', minHeight: 0 }}>
         <table className="bio-table">
           <thead>
             <tr>

@@ -14,13 +14,17 @@ export default function SlideLanding({ onNext }: Props) {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        padding: '2rem',
+        padding: 'clamp(1rem, 4vw, 2rem)',
+        paddingTop: 'clamp(3.5rem, 8vh, 5rem)',
+        paddingBottom: 'clamp(4rem, 8vh, 5rem)',
         zIndex: 2,
+        overflowY: 'auto',
         animation: 'fadeUp 0.8s cubic-bezier(0.22,1,0.36,1) both',
       }}
     >
       {/* Badge */}
       <div
+        className="landing-badge"
         style={{
           display: 'inline-flex',
           alignItems: 'center',
@@ -34,8 +38,12 @@ export default function SlideLanding({ onNext }: Props) {
           letterSpacing: '0.12em',
           textTransform: 'uppercase',
           color: '#E8A020',
-          marginBottom: '2rem',
+          marginBottom: 'clamp(0.8rem, 2.5vh, 2rem)',
           animation: 'fadeUp 0.7s 0.1s both',
+          maxWidth: '90vw',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          textAlign: 'center',
         }}
       >
         <span>◆</span>
@@ -49,7 +57,7 @@ export default function SlideLanding({ onNext }: Props) {
           fontWeight: 900,
           lineHeight: 1.05,
           maxWidth: 820,
-          marginBottom: '1.2rem',
+          marginBottom: 'clamp(0.6rem, 2vh, 1.2rem)',
           animation: 'fadeUp 0.7s 0.2s both',
           textShadow: '0 2px 40px rgba(0,0,0,0.7)',
         }}
@@ -66,7 +74,7 @@ export default function SlideLanding({ onNext }: Props) {
           color: '#D0D8E4',
           maxWidth: 580,
           lineHeight: 1.6,
-          marginBottom: '2.5rem',
+          marginBottom: 'clamp(1rem, 3vh, 2.5rem)',
           animation: 'fadeUp 0.7s 0.3s both',
         }}
       >
@@ -79,7 +87,7 @@ export default function SlideLanding({ onNext }: Props) {
         style={{
           display: 'flex',
           gap: '2rem',
-          marginBottom: '2.8rem',
+          marginBottom: 'clamp(1rem, 3vh, 2.8rem)',
           flexWrap: 'wrap',
           justifyContent: 'center',
           animation: 'fadeUp 0.7s 0.4s both',

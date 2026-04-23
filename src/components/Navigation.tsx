@@ -55,6 +55,7 @@ export default function Navigation({ current, total, onPrev, onNext, onJump }: P
         <button
           onClick={onPrev}
           disabled={isFirst}
+          className="nav-btn"
           style={{
             background: isFirst ? 'rgba(255,255,255,0.05)' : 'rgba(232,160,32,0.12)',
             border: '1px solid',
@@ -75,11 +76,11 @@ export default function Navigation({ current, total, onPrev, onNext, onJump }: P
             minHeight: '2.5rem',
           }}
         >
-          ← PREV
+          ← <span className="nav-btn-label">PREV</span>
         </button>
 
-        {/* Dot navigation */}
-        <div style={{ display: 'flex', gap: '0.35rem', alignItems: 'center', flex: 1, justifyContent: 'center', flexWrap: 'wrap' }}>
+        {/* Dot navigation — hidden on very narrow screens */}
+        <div className="nav-dots-area" style={{ display: 'flex', gap: '0.35rem', alignItems: 'center', flex: 1, justifyContent: 'center', flexWrap: 'wrap' }}>
           {Array.from({ length: total }).map((_, i) => (
             <button
               key={i}
@@ -104,10 +105,31 @@ export default function Navigation({ current, total, onPrev, onNext, onJump }: P
           ))}
         </div>
 
+        {/* Page counter — shown only on very narrow screens (≤480px) */}
+        <div
+          className="nav-counter"
+          style={{
+            display: 'none',
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: '0.85rem',
+            fontWeight: 700,
+            color: '#E8A020',
+            letterSpacing: '0.05em',
+            gap: '0.25rem',
+          }}
+        >
+          <span style={{ color: '#E8A020' }}>{current + 1}</span>
+          <span style={{ color: 'rgba(255,255,255,0.3)' }}>/</span>
+          <span style={{ color: 'rgba(255,255,255,0.5)' }}>{total}</span>
+        </div>
+
         {/* NEXT button */}
         <button
           onClick={onNext}
           disabled={isLast}
+          className="nav-btn"
           style={{
             background: isLast ? 'rgba(255,255,255,0.05)' : '#E8A020',
             border: '1px solid',
@@ -128,7 +150,7 @@ export default function Navigation({ current, total, onPrev, onNext, onJump }: P
             minHeight: '2.5rem',
           }}
         >
-          NEXT →
+          <span className="nav-btn-label">NEXT </span>→
         </button>
       </div>
     </div>
